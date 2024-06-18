@@ -192,4 +192,21 @@ int move(int tile)
 int won(void)
 {
   // TODO
+  int index = 0;
+  int size = d * d;
+  int arrayOne[size];
+ 
+  for (int i = 0; i < d; i++) {
+	  for (int j = 0; j < d; j++) {
+		  arrayOne[index] = board[i][j];
+		  index++;
+	  } // for
+  } // for
+
+  for (int i = 0; i < size - 1; i++) {
+	  if (arrayOne[i] > arrayOne[i+1]) {
+		  return false;
+	  } // if
+  } // for
+   return true;
 }
