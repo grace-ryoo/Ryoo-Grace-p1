@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 // constants
 #define DIM_MIN 3
@@ -165,7 +166,18 @@ void greet(void)
  */
 void init(void)
 {
-  // TODO
+	int nums = d * d - 1;
+	for (int i = 0; i < d; i++) {
+		for (int j = 0; j < d; j++) {
+			board[i][j] = nums;
+			nums--;
+		} // for
+	} // for
+
+	if (d % 2 == 0) { // special condition
+		board[d - 1][d - 3] = 1;
+		board[d - 1][d - 2] = 2;
+	} // if
 }
 
 /**
@@ -173,7 +185,15 @@ void init(void)
  */
 void draw(void)
 {
-  // TODO
+	for (int i = 0; i < d; i++) {
+		for (int j = 0; j < d; j++) {
+			if (board[i][j] != 0) {
+				printf("%2d", board[i][j]);
+			} else {
+				printf("_");
+			} // if
+		} // for
+	} // for
 }
 
 /**
@@ -210,3 +230,4 @@ int won(void)
   } // for
    return true;
 }
+
