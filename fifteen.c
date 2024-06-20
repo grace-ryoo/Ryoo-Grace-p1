@@ -202,7 +202,37 @@ void draw(void)
  */
 int move(int tile)
 {
-  // TODO
+  int row;
+  int col;  
+  for (int i = 0; i < d; i++) {
+	  for (int j = 0; j < d; j++) {
+		  if (board[i][j] == tile) {
+			 row = i;
+			 col = j;
+		  } // if
+	  } // for
+  } // for
+
+  if (row + 1 < d && board[row + 1][col] == 0) {
+	  board[row][col] = 0;
+	  board[row + 1][col] = tile;
+	  return 1;
+  } else if (row - 1 >= 0 && board[row - 1][col] == 0) {
+	  board[row][col] = 0;
+	  board[row - 1][col] = tile;
+	  return 1;
+  } else if (col + 1 < d && board[row][col + 1] == 0) {
+	  board[row][col] = 0;
+	  board[row][col + 1] = tile;
+	  return 1;
+  } else if (col - 1 >= 0 && board[row][col - 1] == 0) {
+	  board[row][col] = 0;
+	  board[row][col - 1] = tile;
+	  return 1;
+  } // if
+
+  return 0;
+
 }
 
 /**
@@ -230,4 +260,6 @@ int won(void)
   } // for
    return true;
 }
+
+
 
