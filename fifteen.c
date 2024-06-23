@@ -190,9 +190,10 @@ void draw(void)
 			if (board[i][j] != 0) {
 				printf("%2d", board[i][j]);
 			} else {
-				printf("_");
+				printf(" _ "); // empty space
 			} // if
 		} // for
+		printf("\n"); // new line
 	} // for
 }
 
@@ -258,7 +259,12 @@ int won(void)
 		  return false;
 	  } // if
   } // for
-   return true;
+
+  if (board[d - 1][d - 1] == 0) {
+	  return true;
+  } else {
+	  return false;
+  } // if
 }
 
 
