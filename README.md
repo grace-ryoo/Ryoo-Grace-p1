@@ -2,7 +2,7 @@
 
 Instructions to compile, run, and clean:
 Type and enter "make" to compile the program.
-Type and enter "make run" to run the program.
+Type and enter "./fifteen" + number of dimensions to run the program.
 Type and enter "make clean" to clean the program.
 
 1. Besides 4x4, what other dimensions does the framework allow?
