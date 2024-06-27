@@ -188,7 +188,7 @@ void draw(void)
 	for (int i = 0; i < d; i++) {
 		for (int j = 0; j < d; j++) {
 			if (board[i][j] != 0) {
-				printf("%2d", board[i][j]);
+				printf("%2d ", board[i][j]);
 			} else {
 				printf(" _ "); // empty space
 			} // if
@@ -205,7 +205,7 @@ int move(int tile)
 {
   int row;
   int col;  
-  for (int i = 0; i < d; i++) {
+  for (int i = 0; i < d; i++) { // find tile position
 	  for (int j = 0; j < d; j++) {
 		  if (board[i][j] == tile) {
 			 row = i;
@@ -214,19 +214,19 @@ int move(int tile)
 	  } // for
   } // for
 
-  if (row + 1 < d && board[row + 1][col] == 0) {
+  if (row + 1 < d && board[row + 1][col] == 0) { // move down 1
 	  board[row][col] = 0;
 	  board[row + 1][col] = tile;
 	  return 1;
-  } else if (row - 1 >= 0 && board[row - 1][col] == 0) {
+  } else if (row - 1 >= 0 && board[row - 1][col] == 0) { // move up 1
 	  board[row][col] = 0;
 	  board[row - 1][col] = tile;
 	  return 1;
-  } else if (col + 1 < d && board[row][col + 1] == 0) {
+  } else if (col + 1 < d && board[row][col + 1] == 0) { // move right 1 
 	  board[row][col] = 0;
 	  board[row][col + 1] = tile;
 	  return 1;
-  } else if (col - 1 >= 0 && board[row][col - 1] == 0) {
+  } else if (col - 1 >= 0 && board[row][col - 1] == 0) { // move left 1
 	  board[row][col] = 0;
 	  board[row][col - 1] = tile;
 	  return 1;
@@ -243,24 +243,28 @@ int move(int tile)
 int won(void)
 {
   // TODO
-  int index = 0;
-  int size = d * d;
-  int arrayOne[size];
- 
+  int index = 1;
+
   for (int i = 0; i < d; i++) {
 	  for (int j = 0; j < d; j++) {
-		  arrayOne[index] = board[i][j];
-		  index++;
+		if (i == d - 1) {
+			if (j == d - 1) {
+				if (board[i][j] != 0) {
+					return false;
+				} else {
+					return true;
+				} // if
+			} // if
+		} // if
+		  if (board[i][j] == index) {
+		  	index++;
+		  } else {
+			  return false;
+		  } // if
 	  } // for
   } // for
 
-  for (int i = 0; i < size - 1; i++) {
-	  if (arrayOne[i] > arrayOne[i+1]) {
-		  return false;
-	  } // if
-  } // for
-
-  if (board[d - 1][d - 1] == 0) {
+    if (board[d - 1][d - 1] == 0) {
 	  return true;
   } else {
 	  return false;
